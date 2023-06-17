@@ -10,7 +10,7 @@
     position: relative;
     margin-bottom: 3rem;
     padding-top: calc(8rem + 57px);
-    padding-bottom: 8rem;
+    height: 40rem;
     background: no-repeat center center;
     background-color: #6c757d;
     background-size: cover;
@@ -33,7 +33,7 @@
 }
 
 .fs-site-subheading {
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 300;
     line-height: 1.1;
     display: block;
@@ -65,4 +65,68 @@
     background-image: url(./assets//img/login.jpg) !important;
     background: no-repeat center center;
     background-size: cover;
+}
+
+.error-page {
+    background-image: linear-gradient(#ED213A, #93291E);
+}
+
+.error-page h1 {
+    font-size: 128px;
+}
+
+.error-page a {
+    color: #ED213A;
+    letter-spacing: 2px;
+}
+
+.active {
+    color: #00657B !important;
+}
+
+.btn-icon {
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.text-cyan {
+    color: #0085A1 !important;
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+}
+
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5 {
+    font-size: 2.5rem;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+}
+
+.article p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.spinner-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+.spinner-md {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.spinner-lg {
+    width: 5rem;
+    height: 5rem;
 }

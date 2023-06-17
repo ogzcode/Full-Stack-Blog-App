@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
+
+/* Fonty Style */
+.font-open-sans-800 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+.font-open-sans-700 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+.font-open-sans-600 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+.font-open-sans-400 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+.font-open-sans-300 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+.font-lora-700 {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+}
+.font-lora-400 {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+}
+
+/* Fonty Style */
+
+
+.ls-1 {
+    letter-spacing: 1px;
+}
+.ls-2 {
+    letter-spacing: 2px;
+}
+.ls-3 {
+    letter-spacing: 3px;
+}
+
