@@ -1,37 +1,30 @@
-import { useGetPostByIdQuery, useDeletePostMutation } from "../redux/services/authApi";
 import { useSelector, useDispatch } from "react-redux";
 import { useMatch, useNavigate, redirect } from "react-router-dom";
-import { setPost, deletePost } from "../redux/slice/postSlice.js";
+import { deletePostAsyncThunk, getPostByIdAsyncThunk } from "../redux/slice/postSlice.js";
 import { useEffect } from "react";
 import Spinner from "../components/Spinner";
 
 export default function SinglePost() {
+    const { singlePost } = useSelector((state) => state.post);
     let match = useMatch("/post/:id");
-    const { token } = useSelector((state) => state.post);
-    const { data, error, isLoading, isSuccess } = useGetPostByIdQuery(match.params.id);
-    const [deletePostById] = useDeletePostMutation();
+    const { token, error, loading } = useSelector((state) => state.post);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     let content;
 
     useEffect(() => {
-        if (isSuccess) {
-            dispatch(setPost(data.post));
-        }
-    }, [dispatch, data])
+        dispatch(getPostByIdAsyncThunk(match.params.id));
+    }, [])
 
     if (error) {
         redirect("/error");
     }
-    else if (isLoading) {
-        content = <Spinner />
-    }
-    else if (isSuccess) {
+    else if (singlePost) {
         content = (
             <div className="col-md-10 col-lg-8 col-xl-7 article ">
-                <p className="fs-6">{data.post.time}</p>
-                <div dangerouslySetInnerHTML={{ __html: data.post.content }}>
+                <p className="fs-6">{singlePost.time}</p>
+                <div dangerouslySetInnerHTML={{ __html: singlePost.content }}>
                 </div>
             </div>
         )
@@ -39,12 +32,8 @@ export default function SinglePost() {
 
     const deletePostId = async () => {
         try {
-            console.log(match.params.id);
+            await dispatch(deletePostAsyncThunk(match.params.id));
             navigate("/");
-            await deletePostById({ id: match.params.id}).unwrap();
-            await dispatch(deletePost(match.params.id));
-            //redirect("/");
-
         }
         catch (err) {
             console.log(err);

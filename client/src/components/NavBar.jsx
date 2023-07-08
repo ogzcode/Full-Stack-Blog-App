@@ -1,8 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
-import { removeToken } from "../redux/slice/postSlice";
-
+import { logout } from "../redux/slice/postSlice";
 
 export default function NavBar() {
     const token = useSelector((state) => state.post.token);
@@ -19,7 +17,7 @@ export default function NavBar() {
     }
 
     const handleLogout = () => {
-        dispatch(removeToken());
+        dispatch(logout());
         navigate("/");
     }
 
@@ -36,7 +34,7 @@ export default function NavBar() {
                     id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item mx-3">
-                            <Link to={"/"} className={`${isActive("/")} nav-link font-open-sans-700 text-cyan`} aria-current="page">Home</Link>
+                            <Link to={"/"} className={`${isActive("/home")} nav-link font-open-sans-700 text-cyan`} aria-current="page">Home</Link>
                         </li>
                         <li className="nav-item mx-3">
                             <Link to={"/about"} className={`${isActive("/about")} nav-link font-open-sans-700 text-cyan`}>About</Link>
@@ -51,7 +49,7 @@ export default function NavBar() {
                                 </>
                                 :
                                 <li className="nav-item mx-3">
-                                    <Link to={"/login"} className={`${isActive("/create")} nav-link font-open-sans-700 text-cyan`}>Login</Link>
+                                    <Link to={"/login"} className={`nav-link font-open-sans-700 text-cyan`}>Login</Link>
                                 </li>
                         }
                     </ul>

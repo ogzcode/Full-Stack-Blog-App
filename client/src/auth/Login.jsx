@@ -1,28 +1,26 @@
 import { Form } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { useLoginMutation } from "../redux/services/authApi";
-import { setToken } from "../redux/slice/postSlice";
+import { loginAsyncThunk } from "../redux/slice/postSlice";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validated, setValidated] = useState(false);
+    const { loading } = useSelector((state) => state.post);
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const [login, { isLoading, error }] = useLoginMutation();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         event.stopPropagation();
 
         try {
-            const result = await login({ email, password });
-            dispatch(setToken(result.data.token));
-            navigate("/create");
+            dispatch(loginAsyncThunk({ email, password }));
+            navigate("/home");
             setValidated(true);
         }
         catch (err) {
@@ -62,7 +60,7 @@ export default function Login() {
                 <div className="text-center mt-5">
                     <button className="btn text-white btn-next-post px-5 py-2 fs-5 rounded-none" type="submit">
                         {
-                            isLoading ? "Loading..." : "Login"
+                            loading ? "Loading..." : "Login"
                         }
                     </button>
                 </div>

@@ -31,14 +31,14 @@ const headerContent = {
 
 export default function Header({ img, heading, subheading }) {
     const location = useLocation().pathname.split('/')[1];
-    const post = useSelector(state => state.post.post);
+    const {loading, singlePost} = useSelector(state => state.post);
 
-    if (Object.keys(post).length !== 0) {
-        headerContent.post.heading = post.heading;
-        headerContent.post.subheading = post.subheading;
-        headerContent.post.img = `http://localhost:3000/${post.mainImage}`;
+    if (Object.keys(singlePost).length !== 0) {
+        headerContent.post.heading = singlePost.heading;
+        headerContent.post.subheading = singlePost.subheading;
+        headerContent.post.img = `http://localhost:3000/${singlePost.mainImage}`;
     }
-    else if (location === 'post') {
+    else if (loading) {
         return <Spinner />
     }
 

@@ -1,7 +1,9 @@
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useCreatePostMutation } from '../redux/services/authApi';
+import { createPostAsyncThunk } from '../redux/slice/postSlice.js';
+
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -18,7 +20,7 @@ const modules = {
 };
 
 function BlogForm() {
-    const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(null);
     const [value, setValue] = useState('');
     const [heading, setHeading] = useState('');
     const [subheading, setSubheading] = useState('');
@@ -27,7 +29,7 @@ function BlogForm() {
     const imageInputRef = useRef(null);
     const quillRef = useRef(null);
 
-    const [createPost, { isLoading, isError, isSuccess, error }] = useCreatePostMutation();
+    const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,7 +42,8 @@ function BlogForm() {
         formData.append('image', mainImage);
 
         try {
-            await createPost({ formData });
+            await dispatch(createPostAsyncThunk(formData));
+            setValidated(true);
         }
         catch (err) {
             setValidated(false);
@@ -52,7 +55,6 @@ function BlogForm() {
         setMainImage('');
         quillRef.current.getEditor().setText('');
         setValue('');
-        setValidated(true);
     };
 
     return (
@@ -71,7 +73,7 @@ function BlogForm() {
                                 placeholder="Enter blog heading"
                                 maxLength={50}
                             />
-                            <Form.Control.Feedback type="invalid">Heading is blank!</Form.Control.Feedback>
+                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Heading is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="validationCustom02">
@@ -84,7 +86,7 @@ function BlogForm() {
                                 placeholder="Enter blog subheading"
                                 maxLength={50}
                             />
-                            <Form.Control.Feedback type="invalid">Subheading is blank!</Form.Control.Feedback>
+                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Subheading is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="formFile" className="mb-3">
@@ -96,12 +98,12 @@ function BlogForm() {
                                 ref={imageInputRef}
                                 onChange={e => setMainImage(e.target.files[0])}
                             />
-                            <Form.Control.Feedback type="invalid">Main image is blank!</Form.Control.Feedback>
+                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Main image is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="validationCustom03">
                             <ReactQuill theme="snow" modules={modules} placeholder='Content goes here' onChange={setValue} ref={quillRef}/>
-                            <Form.Control.Feedback type="invalid">Content is blank!</Form.Control.Feedback>
+                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Content is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <div className="text-center mt-5">

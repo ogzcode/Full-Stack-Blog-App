@@ -1,39 +1,32 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { redirect, Link } from "react-router-dom";
 
-import { useGetPostsPreviewQuery } from "../redux/services/authApi";
+import { getPostPreviewAsyncThunk } from "../redux/slice/postSlice";
+import PostPreview from "./PostPreview";
+
 import Spinner from "./Spinner";
 
-function PostPreview({ post }) {
-    return (
-        <div className="post-preview">
-            <Link to={`/post/${post._id}`} className="text-decoration-none text-dark">
-                <h2 className="fw-bold fs-1 mt-5 mb-2">{ post.heading }</h2>
-                <h3 className="fw-light fs-4 mb-2">{ post.subheading }</h3>
-            </Link>
-            <p className="fs-6 fst-italic" style={{ color: "#6c757d" }}>
-                Posted by
-                <a href="#!" className="text-decoration-none mx-1">Admin</a>
-                on { post.time }
-            </p>
-            <hr />
-        </div>
-    ); 
-}
+export default function HomeContent() {   
+    const { postList, loading, error } = useSelector(state => state.post); 
+    const dispatch = useDispatch();
 
-export default function HomeContent() {
-    const { data: posts, error, isLoading, isSuccess } = useGetPostsPreviewQuery();
-    
+    useEffect(() => {
+        dispatch(getPostPreviewAsyncThunk());
+    }, [dispatch]);
+
+
     let content;
 
     if (error) {
         redirect("/error");
     }
-    else if (isLoading) {
+    else if (loading) {
         content = <Spinner />;
     }
-    else if (isSuccess) {
-        content = posts.posts.map((post) => <PostPreview key={post._id} post={post}/>);
+    else if (postList.length !== 0) {
+        content = postList.map((post) => <PostPreview key={post._id} post={post}/>);
     }
 
     return (
