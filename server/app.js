@@ -31,7 +31,6 @@ app.get("/getPostsPreview", getPostsPreview);
 app.get("/getPostById/:id", getPostById);
 
 app.post("/auth/createPost", authMiddleWare, docMiddleware.single("image"), createPost);
-
 app.delete("/auth/deletePost/:id", authMiddleWare, deletePost);
 
 app.listen(3000, () => {

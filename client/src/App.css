@@ -81,7 +81,7 @@
 }
 
 .active {
-    color: #00657B !important;
+    border-bottom: 2px solid #0085A1 !important;
 }
 
 .btn-icon {

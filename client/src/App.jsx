@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { setToken } from './redux/slice/postSlice'
+import { setUserToken } from './redux/slice/postSlice'
+import { getToken} from './services/storage'
 
 import './App.css'
 import Home from './pages/Home'
@@ -16,9 +17,9 @@ function App() {
   const { token } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
-  const storageToken = localStorage.getItem("token");
+  const storageToken = getToken();
   if (storageToken && !token) {
-    dispatch(setToken(storageToken));
+    dispatch(setUserToken(storageToken));
   }
 
   return (

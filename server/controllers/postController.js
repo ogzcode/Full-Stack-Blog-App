@@ -37,7 +37,6 @@ export const getPostsPreview = async (req, res) => {
 }
 
 export const getPostById = async (req, res) => {
-    //console.log(req.params)
     try {
         const { id } = req.params;
         const post = await Post.findById(id);
