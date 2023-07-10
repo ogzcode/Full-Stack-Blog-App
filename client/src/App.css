@@ -81,7 +81,7 @@
 }
 
 .active {
-    border-bottom: 2px solid #0085A1 !important;
+    border-bottom: 1px solid #00a6c7 !important;
 }
 
 .btn-icon {
@@ -91,7 +91,8 @@
 }
 
 .text-cyan {
-    color: #0085A1 !important;
+    color: #00a6c7 !important;
+    letter-spacing: 1px;
 }
 
 .article img {
@@ -129,4 +130,8 @@
 .spinner-lg {
     width: 5rem;
     height: 5rem;
+}
+
+.table td {
+    padding: .75rem 0rem !important;
 }
