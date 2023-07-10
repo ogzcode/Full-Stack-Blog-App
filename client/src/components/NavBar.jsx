@@ -22,7 +22,7 @@ export default function NavBar() {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-light" id="mainNav">
+        <nav className="navbar navbar-expand-lg py-4" style={{ backgroundColor: "rgba(255,255,255,.8)"}} id="mainNav">
             <div className="container-fluid px-3 px-lg-5">
                 <Link to={"/"} className="navbar-brand text-uppercase font-open-sans-800 ls-1 fs-3 text-dark">Clean Blog</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -39,11 +39,17 @@ export default function NavBar() {
                         <li className="nav-item mx-3">
                             <Link to={"/about"} className={`${isActive("/about")} nav-link font-open-sans-700 text-cyan`}>About</Link>
                         </li>
+                        <li className="nav-item mx-3">
+                            <Link to={"/contact"} className={`${isActive("/contact")} nav-link font-open-sans-700 text-cyan`}>Contact</Link>
+                        </li>
                         {
                             token ?
                                 <>
                                     <li className="nav-item mx-3">
                                         <Link to={"/create"} className={`${isActive("/create")} nav-link font-open-sans-700 text-cyan`}>Create Post</Link>
+                                    </li>
+                                    <li className="nav-item mx-3">
+                                        <Link to={"/messages"} className={`${isActive("/messages")} nav-link font-open-sans-700 text-cyan`}>Messages</Link>
                                     </li>
                                     <li className="btn-icon nav-item mx-3 text-cyan" onClick={handleLogout}><i className="bi bi-box-arrow-right mx-auto"></i></li>
                                 </>

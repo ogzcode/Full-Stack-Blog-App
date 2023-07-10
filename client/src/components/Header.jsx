@@ -3,9 +3,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import homebg from '../assets/img/home-bg.jpg';
 import create from '../assets/img/create-blog-page.jpg';
 import aboutbg from '../assets/img/about-bg.jpg'
+import contactbg from '../assets/img/contact-bg.jpg'
+import messageBg from '../assets/img/messages-bg.jpg'
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import Spinner from './Spinner';
 
 const headerContent = {
@@ -19,9 +20,19 @@ const headerContent = {
         "heading": "About Me",
         "subheading": "This is what I do."
     },
+    "contact": {
+        "img": contactbg,
+        "heading": "Contact Me",
+        "subheading": "Have questions? I have answers."
+    },
     "create": {
         "img": create,
         "heading": "Create blog",
+        "subheading": "A Blog Theme by Start Bootstrap"
+    },
+    "messages": {
+        "img": messageBg,
+        "heading": "Message",
         "subheading": "A Blog Theme by Start Bootstrap"
     },
     "post": {
