@@ -4,9 +4,17 @@ export default function About() {
             <div className="container px-4 px-lg-5">
                 <div className="row gx-4 gx-lg-5 justify-content-center">
                     <div className="col-md-10 col-lg-8 col-xl-7">
-                        <p className='fs-3 fw-light'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                        <p className='fs-3 fw-light'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                        <p className='fs-3 fw-light'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+                        <p className='fs-3 fw-light'>
+                            Merhaba! Bugün sizlere kişisel blog sayfamı tanıtmak istiyorum. 
+                            Blogumda çeşitli konularda yazılar paylaşıyorum ve deneyimlerimi, ilgi 
+                            alanlarımı ve düşüncelerimi okuyucularımla paylaşmaktan 
+                            keyif alıyorum. Seyahat deneyimlerimden, kitap ve film önerilerine, 
+                            günlük yaşamdan ilham verici hikayelere kadar geniş bir yelpazede içerikler sunuyorum. 
+                            Yazılarımda özenle seçtiğim görsellerle birlikte, keyifli bir okuma deneyimi sunmaya 
+                            çalışıyorum. Blogumu düzenli olarak güncel tutuyor ve yeni yazılar ekliyorum, 
+                            böylece her ziyaretinizde yeni bir keşif yapmanızı sağlıyorum. Sizinle bu 
+                            yolculuğumda buluşmayı ve blogumda sizinle paylaştığım deneyimlerin size ilham vermesini umuyorum.
+                        </p>
                     </div>
                 </div>
             </div>

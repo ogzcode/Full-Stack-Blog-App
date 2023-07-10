@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useMatch, useNavigate, redirect } from "react-router-dom";
 import { deletePostAsyncThunk, getPostByIdAsyncThunk } from "../redux/slice/postSlice.js";
 import { useEffect } from "react";
-import Spinner from "../components/Spinner";
 
 export default function SinglePost() {
     const { singlePost } = useSelector((state) => state.post);
