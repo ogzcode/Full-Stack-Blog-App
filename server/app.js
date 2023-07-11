@@ -10,6 +10,8 @@ import { createPost, getPostsPreview, getPostById, deletePost } from './controll
 import { docMiddleware } from './middleware/docMiddleware.js';
 import { authMiddleWare } from './middleware/authMiddleware.js';
 
+import { getAllMessage, createMessage, deleteMessage } from './controllers/messageController.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
@@ -32,6 +34,10 @@ app.get("/getPostById/:id", getPostById);
 
 app.post("/auth/createPost", authMiddleWare, docMiddleware.single("image"), createPost);
 app.delete("/auth/deletePost/:id", authMiddleWare, deletePost);
+
+app.get("/auth/getAllMessage", authMiddleWare, getAllMessage);
+app.post("/createMessage", createMessage);
+app.delete("/auth/deleteMessage/:id", authMiddleWare, deleteMessage);
 
 app.listen(3000, () => {
     console.log('Server started on port localhost:3000');
