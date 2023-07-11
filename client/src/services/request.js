@@ -27,6 +27,18 @@ export const deletePost = (id) => {
     return response.data;
 }
 
+export const getAllMessage = () => {
+    return axios.get(URLS.GET_ALL_MESSAGE);
+}
+
+export const createMessage = (data) => {
+    return axios.post(URLS.CREATE_MESSAGE, data);
+}
+
+export const deleteMessage = (id) => {
+    return axios.delete(`${URLS.DELETE_MESSAGE}/${id}`);
+}
+
 export const setupAxiosInterceptors = () => {
     axios.interceptors.request.use(
         config => {

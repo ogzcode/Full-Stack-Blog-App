@@ -9,6 +9,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [validated, setValidated] = useState(false);
+    const [show, setShow] = useState(false);
     const { loading } = useSelector((state) => state.post);
     const navigate = useNavigate();
 
@@ -44,15 +45,23 @@ export default function Login() {
                         type="email"
                         placeholder="Enter admin email"
                     />
+
                     <Form.Control.Feedback type="invalid">Incorrect email!</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group className="mt-2" controlId="validationCustom02">
-                    <Form.Label>Password</Form.Label>
+                <Form.Group className="mt-3 position-relative" controlId="validationCustom02">
+                    <div className="d-flex justify-content-between align-items-center">
+                        <Form.Label>Password</Form.Label>
+                        <div className="fs-5 text-body-tertiary" style={{ cursor: "pointer"}}>
+                            {
+                                show ? <i onClick={() => setShow(false)} className="bi bi-eye-fill"></i> : <i onClick={() => setShow(true)} className="bi bi-eye-slash-fill"></i>
+                            }
+                        </div>
+                    </div>
                     <Form.Control
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        type="password"
+                        type={show ? "text" : "password"}
                         placeholder="Enter admin password"
                     />
                     <Form.Control.Feedback type="invalid">Incorrect password!</Form.Control.Feedback>
