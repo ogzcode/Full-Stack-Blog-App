@@ -14,15 +14,18 @@ import MainRoutes from './routes/MainRoutes'
 import SinglePost from './pages/SinglePost'
 import Contact from './pages/Contact'
 import { Messages } from './pages/Messages'
+import { useEffect } from 'react'
 
 function App() {
   const { token } = useSelector((state) => state.post);
+  const storageToken = getToken();
   const dispatch = useDispatch();
 
-  const storageToken = getToken();
-  if (storageToken && !token) {
-    dispatch(setUserToken(storageToken));
-  }
+  useEffect(() => {
+    if (storageToken && !token) {
+      dispatch(setUserToken(storageToken));
+    }
+  }, [token, storageToken, dispatch])
 
   return (
     <Routes>
@@ -32,7 +35,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         {
-          storageToken && (
+          token && (
             <>
               <Route path="create" element={<Create />} />
               <Route path="messages" element={<Messages />} />
