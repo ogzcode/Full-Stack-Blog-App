@@ -6,8 +6,8 @@ export const login = (email, password) => {
     return axios.post(URLS.LOGIN, { email, password });
 }
 
-export const getPostPrewiew = () => {
-    return axios.get(URLS.GET_POSTS_PREVIEW);
+export const getPostPrewiew = (page) => {
+    return axios.get(`${URLS.GET_POSTS_PREVIEW}?page=${page}`,);
 }
 
 export const getPostById = (id) => {

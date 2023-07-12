@@ -8,7 +8,7 @@ import About from './pages/About'
 import Login from './auth/Login'
 import Create from './pages/Create'
 import Error from './pages/Error'
-import HomeContent from './components/HomeContent'
+import HomeContent from './pages/HomeContent'
 
 import MainRoutes from './routes/MainRoutes'
 import SinglePost from './pages/SinglePost'

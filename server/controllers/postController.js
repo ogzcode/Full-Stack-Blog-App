@@ -27,9 +27,14 @@ export const createPost = async (req, res) => {
 }
 
 export const getPostsPreview = async (req, res) => {
+    const { page } = req.query;
+    const limit = 5;
     try {
-        const posts = await Post.find({ }, "heading subheading time");
-        res.status(200).json({ posts });
+        const skip = (page - 1) * limit;
+
+        const totatlPosts = await Post.countDocuments();
+        const posts = await Post.find({ }, "heading subheading time").skip(skip).limit(limit);
+        res.status(200).json({ posts, pageCount: Math.ceil(totatlPosts / limit), currentPage: page });
     }
     catch (error) {
         res.status(500).json({ message: "Something went wrong" });

@@ -58,6 +58,12 @@
     border: #00657B !important;
 }
 
+.btn-next-post:disabled {
+    background-color: #6c757d !important;
+    border: #6c757d !important;
+    cursor: not-allowed;
+}
+
 .social-icon:hover i {
     color: #0085A1;
 } 

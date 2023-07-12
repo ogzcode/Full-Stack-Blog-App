@@ -7,8 +7,8 @@ export const loginAsyncThunk = createAsyncThunk("post/login", async (data) => {
     return response.data;
 });
 
-export const getPostPreviewAsyncThunk = createAsyncThunk("post/getPostPreview", async () => {
-    const response = await getPostPrewiew();
+export const getPostPreviewAsyncThunk = createAsyncThunk("post/getPostPreview", async (page) => {
+    const response = await getPostPrewiew(page);
     return response.data;
 });
 
@@ -34,6 +34,8 @@ export const postSlice = createSlice({
         token: "",
         postList: [],
         singlePost: {},
+        page: 1,
+        pageCount: 0,
         error: "",
         loading: false,
     },
@@ -66,8 +68,11 @@ export const postSlice = createSlice({
             .addCase(loginAsyncThunk.rejected, (state, action) => {
                 state.error = action.payload.message;
             })
+
             .addCase(getPostPreviewAsyncThunk.fulfilled, (state, action) => {
                 state.postList = action.payload.posts;
+                state.pageCount = action.payload.pageCount;
+                state.page = parseInt(action.payload.currentPage);
                 state.loading = false;
                 state.error = "";
             })
@@ -77,6 +82,7 @@ export const postSlice = createSlice({
             .addCase(getPostPreviewAsyncThunk.rejected, (state, action) => {
                 state.error = action.payload;
             })
+
             .addCase(createPostAsyncThunk.fulfilled, (state, action) => {
                 state.postList = [...state.postList, action.payload.post];
                 state.loading = false;
@@ -88,6 +94,7 @@ export const postSlice = createSlice({
             .addCase(createPostAsyncThunk.rejected, (state, action) => {
                 state.error = action.payload.message;
             })
+
             .addCase(deletePostAsyncThunk.fulfilled, (state, action) => {
                 state.postList = state.postList.filter(post => post._id !== action.payload);
                 state.loading = false;
@@ -99,6 +106,7 @@ export const postSlice = createSlice({
             .addCase(deletePostAsyncThunk.rejected, (state, action) => {
                 state.error = action.payload.message;
             })
+
             .addCase(getPostByIdAsyncThunk.fulfilled, (state, action) => {
                 state.singlePost = action.payload.post;
                 state.loading = false;
