@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URLS } from "./url";
-import { getToken } from "./storage";
+import { getToken, removeToken } from "./storage";
 
 export const login = (email, password) => {
     return axios.post(URLS.LOGIN, { email, password });
@@ -47,6 +47,19 @@ export const setupAxiosInterceptors = () => {
                 config.headers.Authorization = `Bearer ${token}`;
             }
             return config;
+        }
+    );
+
+    axios.interceptors.response.use(
+        response => {
+            return response;
+        },
+        error => {
+            if (error.response.status === 401) {
+                removeToken();
+                window.location.href = "/";
+            }
+            return error;
         }
     );
 }
