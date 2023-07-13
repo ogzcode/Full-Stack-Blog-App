@@ -13,27 +13,27 @@ const headerContent = {
     "home": {
         "img": homebg,
         "heading": "Clean Blog",
-        "subheading": "A Blog Theme by Start Bootstrap"
+        "subheading": "Kişisel blog sayfası"
     },
     "about": {
         "img": aboutbg,
-        "heading": "About Me",
-        "subheading": "This is what I do."
+        "heading": "Hakkımda",
+        "subheading": "Kim olduğum ve neler yaptığıma dair bilgiler."
     },
     "contact": {
         "img": contactbg,
-        "heading": "Contact Me",
-        "subheading": "Have questions? I have answers."
+        "heading": "İletişim",
+        "subheading": "Sorularınızı ve önerilerinizi bana iletebilirsiniz."
     },
     "create": {
         "img": create,
-        "heading": "Create blog",
-        "subheading": "A Blog Theme by Start Bootstrap"
+        "heading": "Yeni blog oluştur",
+        "subheading": "Yeni bir blog yazısı oluşturun."
     },
     "messages": {
         "img": messageBg,
-        "heading": "Message",
-        "subheading": "A Blog Theme by Start Bootstrap"
+        "heading": "Mesajlar",
+        "subheading": "Bana iletilen mesajlar."
     },
     "post": {
 

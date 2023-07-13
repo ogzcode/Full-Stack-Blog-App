@@ -35,7 +35,7 @@ export const Modal = ({ children, modalTitle, show, onClose }) => {
                             className="modal__footer-btn footer__btn-secondary"
                             onClick={onClose}
                         >
-                            Close
+                            Kapat
                         </button>
                         <button type="button" className="modal__footer-btn footer__btn-primary" disabled>
                             Save changes

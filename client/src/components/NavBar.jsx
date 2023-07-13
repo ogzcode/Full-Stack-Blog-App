@@ -34,28 +34,28 @@ export default function NavBar() {
                     id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item mx-3">
-                            <Link to={"/"} className={`${isActive("/home")} nav-link font-open-sans-700 text-cyan`} aria-current="page">Home</Link>
+                            <Link to={"/"} className={`${isActive("/home")} nav-link font-open-sans-700 text-cyan`} aria-current="page">Anasayfa</Link>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to={"/about"} className={`${isActive("/about")} nav-link font-open-sans-700 text-cyan`}>About</Link>
+                            <Link to={"/about"} className={`${isActive("/about")} nav-link font-open-sans-700 text-cyan`}>Hakkımda</Link>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to={"/contact"} className={`${isActive("/contact")} nav-link font-open-sans-700 text-cyan`}>Contact</Link>
+                            <Link to={"/contact"} className={`${isActive("/contact")} nav-link font-open-sans-700 text-cyan`}>İletişim</Link>
                         </li>
                         {
                             token ?
                                 <>
                                     <li className="nav-item mx-3">
-                                        <Link to={"/create"} className={`${isActive("/create")} nav-link font-open-sans-700 text-cyan`}>Create Post</Link>
+                                        <Link to={"/create"} className={`${isActive("/create")} nav-link font-open-sans-700 text-cyan`}>Yeni Blog</Link>
                                     </li>
                                     <li className="nav-item mx-3">
-                                        <Link to={"/messages"} className={`${isActive("/messages")} nav-link font-open-sans-700 text-cyan`}>Messages</Link>
+                                        <Link to={"/messages"} className={`${isActive("/messages")} nav-link font-open-sans-700 text-cyan`}>Mesajlarım</Link>
                                     </li>
                                     <li className="btn-icon nav-item mx-3 text-cyan" onClick={handleLogout}><i className="bi bi-box-arrow-right mx-auto"></i></li>
                                 </>
                                 :
                                 <li className="nav-item mx-3">
-                                    <Link to={"/login"} className={`nav-link font-open-sans-700 text-cyan`}>Login</Link>
+                                    <Link to={"/login"} className={`nav-link font-open-sans-700 text-cyan`}>Giriş</Link>
                                 </li>
                         }
                     </ul>
