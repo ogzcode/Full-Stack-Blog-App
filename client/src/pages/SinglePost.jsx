@@ -30,6 +30,10 @@ export default function SinglePost() {
     }
 
     const deletePostId = async () => {
+        const confirm = window.confirm("Bu bloğu silmek istediğinizden emin misiniz?");
+
+        if (!confirm) return;
+
         try {
             await dispatch(deletePostAsyncThunk(match.params.id));
             navigate("/");
@@ -44,9 +48,8 @@ export default function SinglePost() {
             <div className="container px-4 px-lg-5">
                 {
                     token && (
-                        <div className="d-flex justify-content-end mb-4">
-                            <button className="btn btn-outline-primary me-3">Update Post</button>
-                            <button onClick={() => deletePostId()} className="btn btn-outline-danger">Delete Post </button>
+                        <div className="d-flex justify-content-start mb-4">
+                            <button onClick={() => deletePostId()} className="btn btn-danger" style={{ width: "10%"}}>Sil</button>
                         </div>
                     )
                 }

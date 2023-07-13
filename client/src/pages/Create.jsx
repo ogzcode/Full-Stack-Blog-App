@@ -1,6 +1,6 @@
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { createPostAsyncThunk } from '../redux/slice/postSlice.js';
 
@@ -19,34 +19,48 @@ const modules = {
     ]
 };
 
-function BlogForm() {
-    const [validated, setValidated] = useState(null);
+export default function Create() {
     const [value, setValue] = useState('');
     const [heading, setHeading] = useState('');
     const [subheading, setSubheading] = useState('');
     const [mainImage, setMainImage] = useState('');
+
+    const [formError, setFormError] = useState('');
 
     const imageInputRef = useRef(null);
     const quillRef = useRef(null);
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if (formError !== '') {
+            setTimeout(() => {
+                setFormError('');
+            }, 2000);
+        }
+    }, [formError]);
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        if (heading === '' || subheading === '' || value === '' || mainImage === '') {
+            setFormError('Please fill all the fields');
+            return;
+        }
 
         const formData = new FormData();
 
         formData.append('heading', heading);
-        formData.append('subheading', subheading);
+        formData.append('subheading', subheading || "");
         formData.append('content', value);
         formData.append('image', mainImage);
 
         try {
             await dispatch(createPostAsyncThunk(formData));
-            setValidated(true);
         }
         catch (err) {
-            setValidated(false);
+            console.log(err);
+            return
         }
 
         imageInputRef.current.value = "";
@@ -61,36 +75,38 @@ function BlogForm() {
         <Container className='py-5'>
             <Row className='justify-content-center' >
                 <Col md={8} className=''>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit} className="mx-auto">
+                    {
+                        formError !== '' && <div className="alert alert-danger" role="alert">{formError}</div>
+                    }
+                    <form onSubmit={handleSubmit} className="mx-auto">
 
                         <Form.Group className="mb-3" controlId="validationCustom01">
-                            <Form.Label>Heading</Form.Label>
-                            <Form.Control
+                            <Form.Label className='d-block'>Başlık</Form.Label>
+                            <input
                                 value={heading}
                                 onChange={e => setHeading(e.target.value)}
-                                required
                                 type="text"
+                                required
+                                className='form-control'
                                 placeholder="Enter blog heading"
                                 maxLength={50}
                             />
-                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Heading is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="validationCustom02">
-                            <Form.Label>Subheading</Form.Label>
-                            <Form.Control
+                            <Form.Label className='d-block'>Alt Başlık</Form.Label>
+                            <input
                                 value={subheading}
                                 onChange={e => setSubheading(e.target.value)}
-                                required
                                 type="text"
+                                className='form-control'
                                 placeholder="Enter blog subheading"
                                 maxLength={50}
                             />
-                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Subheading is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="formFile" className="mb-3">
-                            <Form.Label>Main image</Form.Label>
+                            <Form.Label>Blog Resmi</Form.Label>
                             <Form.Control 
                                 type="file" 
                                 name="image"
@@ -98,28 +114,18 @@ function BlogForm() {
                                 ref={imageInputRef}
                                 onChange={e => setMainImage(e.target.files[0])}
                             />
-                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Main image is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="validationCustom03">
                             <ReactQuill theme="snow" modules={modules} placeholder='Content goes here' onChange={setValue} ref={quillRef}/>
-                            <Form.Control.Feedback type={validated ? "valid" : "invalid"}>Content is blank!</Form.Control.Feedback>
                         </Form.Group>
 
                         <div className="text-center mt-5">
-                            <button className="btn text-white btn-next-post px-5 py-2 fs-5 rounded-none" type='button' onClick={e => handleSubmit(e)}>Create</button>
+                            <button className="btn text-white btn-next-post px-5 py-2 fs-5 rounded-none" type='button' onClick={e => handleSubmit(e)}>Oluştur</button>
                         </div>
-                    </Form>
+                    </form>
                 </Col>
             </Row>
         </Container>
     );
 }
-
-export default function Create() {
-    return (
-        <div>
-            <BlogForm />
-        </div>
-    );
-};

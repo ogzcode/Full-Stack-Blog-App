@@ -16,7 +16,7 @@ export const Messages = () => {
     }, []);
 
     const handleDelete = (id) => {
-        const confirm = window.confirm("Are you sure you want to delete this message?");
+        const confirm = window.confirm("Bu mesajı silmek istediğinizden emin misiniz?");
         if (!confirm) return;
         dispatch(deleteMessageAsyncThunk(id));
     };
@@ -30,7 +30,7 @@ export const Messages = () => {
         <main className="my-5">
             <div className="container px-4 px-lg-5">
                 <div className="row gx-4 gx-lg-5 justify-content-center">
-                    <h1 className="text-center mb-5">Your Messages</h1>
+                    <h1 className="text-center mb-5">Mesajlarınız</h1>
                     {
                         messageList.length > 0 ? (
                             <div className="scrollable-table">
@@ -67,8 +67,7 @@ export const Messages = () => {
 
                         ) : (
                             <div className="alert alert-warning" role="alert">
-                                <h4 className="alert-heading">No Message</h4>
-                                <p>There is no message.</p>
+                                <h4 className="alert-heading">Mesaj Yok</h4>
                             </div>
                         )
                     }
@@ -76,7 +75,7 @@ export const Messages = () => {
             </div>
             {
                 showModal && (
-                    <Modal show={showModal} onClose={() => setShowModal(false)} modalTitle={"Message"}>
+                    <Modal show={showModal} onClose={() => setShowModal(false)} modalTitle={"Mesaj"}>
                         <p>{messageList.find(msg => msg._id === messageId)?.message}</p>
                     </Modal>
                 )

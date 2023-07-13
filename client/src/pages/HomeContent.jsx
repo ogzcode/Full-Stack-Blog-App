@@ -44,11 +44,16 @@ export default function HomeContent() {
                     {
                         content ? content : (
                             <div className="alert alert-warning" role="alert">
-                                <h4 className="alert-heading">No Post</h4>
-                                <p>There is no post.</p>
+                                <h4 className="alert-heading">Blog Yok</h4>
                             </div>
                         )
                     }
+                    <div className="d-flex justify-content-end my-5">
+                        {
+                            page > 1 && <button onClick={handlePrevPage} className="btn-next-post text-white text-decoration-none text-uppercase py-3 px-4 me-5">← Yeni Bloglar</button>
+                        }
+                        <button onClick={handleNextPage} className="btn-next-post text-white text-decoration-none text-uppercase py-3 px-4" disabled={page === pageCount || pageCount === 0}>Eski Bloglar →</button>
+                    </div>
                 </Col>
             </Row>
         </Container>
