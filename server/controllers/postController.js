@@ -19,7 +19,7 @@ export const createPost = async (req, res) => {
             time: new Date().toLocaleDateString()
         })
         
-        res.status(201).json({ message: "Post created successfully" });
+        res.status(201).json({ message: "Post created successfully", post });
     }
     catch (error) {
         res.status(500).json({ message: "Something went wrong" });

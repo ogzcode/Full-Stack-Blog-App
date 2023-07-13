@@ -17,7 +17,9 @@ export default function Footer() {
                                 <i className="bi-github fs-1"></i>
                             </a>
                         </div>
-                        <div className="text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                        <div className="text-center text-muted fst-italic">Copyright &copy; Your Website 2023 
+                            <a className="text-success ms-2" href="https://startbootstrap.com/theme/clean-blog">Clean Blog Theme</a>
+                        </div>
                     </Col>
                 </Row>
             </Container>
